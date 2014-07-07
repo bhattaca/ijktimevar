@@ -9,7 +9,8 @@
 #include "ijktimevarIO.h"
 #include "ijktimevar_sampled_grid.h"
 #include "ijktimevar_compare.h"
-#include "ijkslice.h"
+#include "ijktimevar_util.h"
+//#include "ijkslice.h"
 #include "ijkIO.txx"
 
 using namespace IJK;
@@ -73,7 +74,24 @@ int main(int argc, char **argv)
 		const int dimension = full_scalar_grid.Dimension();
 		const int time_axis = dimension-1;
 		cout <<"dim " << dimension << endl;
-
+		
+		
+		
+		//
+		
+		string filename = 
+			get_isotable_filename(BINARY, dimension, "cube");
+		POLY_ISOTABLE isotable;
+		read_isosurface_table_from_file
+			(filename, io_info.isotable_directory, isotable.cube, dimension);
+		//
+		vector <int> required_timesteps;
+		const int ta=0;
+		const int tc=4;
+		evaluate_multi_slice (ta, tc, io_info.isovalue[0], isotable, io_info.isotable_directory,
+			full_scalar_grid, required_timesteps, io_info);
+		
+		/*
 		// Generate 4D for the original grid.
 		// set mc datastructures and flags
 		MC_DATA mc_full_data;
@@ -104,7 +122,7 @@ int main(int argc, char **argv)
 		VERTEX_INDEX nums_full = 
 			mc_full_isosurface.simplex_vert.size()/numv_per_simplex_full;
 		const VERTEX_INDEX numv_full = mc_full_isosurface.vertex_coord.size()/dimension-1;
-		/*
+		
 		//store the time steps required for qulaity reconstruction.
 		vector<int> required_time_steps;
 		const int minK = 1;

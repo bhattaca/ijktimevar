@@ -57,7 +57,6 @@ namespace IJKTIMEVAR {
   typedef int ISO_VERTEX_INDEX;  ///< Isosurface vertex index type.
   typedef float SNAP_TYPE;       ///< Snap parameter type.
   typedef int MERGE_INDEX;       ///< Merge index type.
-
   /// Edge index type.
   /// Vertex and edge indices must have the same type.
   typedef VERTEX_INDEX EDGE_INDEX;

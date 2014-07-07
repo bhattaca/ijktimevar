@@ -2,6 +2,7 @@
 #include "ijktimevar_datastruct.h"
 #include <iostream>
 #include <vector>
+#include "ijktimevarIO.h"
 using namespace std;
 using namespace IJKTIMEVAR;
 
@@ -50,3 +51,14 @@ void copy2_sampled_grid (
 	IJK::ARRAY<int> sampled_axis_size,
 	//returns
 	MC_SCALAR_GRID_BASE & sampled_grid);
+
+void evaluate_multi_slice (
+	const int ta, 
+	const int tc,
+	const SCALAR_TYPE & isovalue,
+	POLY_ISOTABLE & isotable,
+	const string & isotable_directory,
+	const MC_SCALAR_GRID_BASE & scalar_grid, 
+	vector<int> rqd_tsteps,
+	IO_INFO &io_info
+	);
